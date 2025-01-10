@@ -36,10 +36,10 @@ npm run dev
 Before starting the server, you need to set up the environment variables. Create a .env file in the root directory of your project and add the following configuration:
 
 ```bash
-PORT=3001
-JWT_SECRET=veryhardpassword
-JWT_EXPIRED_IN=7d
-DB_URI=mongodb+srv://[username]:[password]@cluster0.wmh2w.mongodb.net/[your-database-name]?retryWrites=true&w=majority&appName=Cluster0
+PORT=localhostport
+JWT_SECRET=your_jwt_secret
+JWT_EXPIRED_IN=JWT_EXPIRED
+DB_URI=mongodb_uri
 ```
 
 

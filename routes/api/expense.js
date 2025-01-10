@@ -13,12 +13,13 @@ router.post("/", validate(addExpenseSchema), expenseCtrl.addExpense);
 
 router.get("/report", expenseCtrl.getExpenseReport);
 
+router.get("/summary", expenseCtrl.getExpenseGroupByCategory);
+
 router.patch("/:id", validate(editExpenseSchema), expenseCtrl.editExpense);
 
 router.delete("/:id", expenseCtrl.deleteExpense);
 
 router.get("/:id", expenseCtrl.getSingleExpense);
 
-router.get("/summary/:category", expenseCtrl.getExpenseGroupByCategory);
 
 module.exports = router;

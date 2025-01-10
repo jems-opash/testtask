@@ -154,15 +154,28 @@ exports.getSingleExpense = async (req, res) => {
 
 exports.getExpenseGroupByCategory = async (req, res) => {
   try {
-    const { category } = req.params;
-
-    const expense = await ExpenseModel.find({
-      category,
-    }).lean();
+    const expenses = await ExpenseModel.aggregate([
+      {
+        $group: {
+          _id: "$category",
+          data: {
+            $push: {
+              title: "$title",
+              amount: "$amount",
+              date: "$date",
+              userId: "$userId",
+            },
+          },
+        },
+      },
+      {
+        $sort: { _id: 1 },
+      },
+    ]);
 
     return sendSuccessResponse(res, {
       message: "Expense fetched successfully !!",
-      data: expense,
+      data: expenses,
     });
   } catch (error) {
     return sendErrorResponse(res, { message: error.message });
